@@ -858,6 +858,7 @@ section.active{
 /* faculties and subjects */
 .f_title {
     margin: 20px 0 20px 0;
+    width: 100%;
     height: 50px;
     background-color: var(--titlecolor);
     font-size: 30px;
