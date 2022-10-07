@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Share+Tech|Share+Tech+Mono" rel="stylesheet" />
+        <link href="./css/style.css" rel="stylesheet">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="robots" content="index, follow, noodp">
+        <meta name="googlebot" content="index, follow">
+        <meta name="google" content="notranslate">
+        <meta name="format-detection" content="telephone=no">
+        <title>The test site of an institute</title>
+    </head>
+
+    <body>
+
+        <!-- Button of the right menu -->
+        <div class="rightmenu" onclick="modal.show('openModal');">
+           <svg xmlns="http://www.w3.org/2000/svg" class="" height="50px" viewBox="4 0 24 24" width="24px" fill="#fff"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </div>
+
+        <!-- MODAL WINDOW -->
+        <div id="openModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Title and close button of modal -->
+                    <div class="modal-header">
+                        <h3 class="modal-title">Add new sections</h3> 
+                        <a onclick="modal.close('openModal');" title="Close" class="close">x</a>
+                   </div>
+
+                   <!-- Content -->
+                    <div class="modal-body" style="min-height: 350px;">
+
+                        <!-- Main menu - list of buttons -->
+                        <div class="btnsmodal">
+                            <div id="link_course" class="row smodal" onclick="nav_modal(this.id)">New course</div>
+                            <div id="link_newsubject" class="row smodal" onclick="nav_modal(this.id)">New subject</div>
+                            <div id="link_teachers" class="row smodal" onclick="nav_modal(this.id)">New teacher</div>
+                            <div id="link_students" class="row smodal" onclick="nav_modal(this.id)">New student</div>
+                        </div>
+
+                        <!-- forms to add data -->
+                        <div id="add_data" class="container collapse">
+
+                            <!-- arrow to back to main menu and reset forms -->
+                            <div class="btn_arrow" onclick="resetmodal()"><div class="arrow left"></div></div>
+                            <div id="link_course_newdata" class="newdata collapse">
+                                
+                                <!-- New Course -->
+                                <form id="form_course" action="" style="margin-top: 20px;">
+                                    <fieldset>
+                                        <legend>Create new Course</legend>
+
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="selected_facultet" style="font-size: 1rem;">Faculty</label>
+                                                <select class="form-select" id="selected_faculty" required aria-placeholder="Choose"></select>
+                                            </div>
+
+                                            <div class="input-group">
+                                                <input id="inp_course" class="form-control" type="text" minlength="5" maxlength="20" required placeholder="Title course">
+                                                <button type="submit">Go</button>
+                                            </div> 
+                                    </fieldset>
+
+                                </form>                                
+                            </div>
+
+                                <!-- New subject -->
+                            <div id="link_newsubject_newdata" class="newdata collapse">
+                                <form id="form_newsubject" action="" style="margin-top: 20px;">
+                                    <fieldset>
+                                        <legend>Create new subject</legend>
+                    
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="selected_course" style="font-size: 1rem;">Course</label>
+                                                <select class="form-select" id="selected_course" required aria-placeholder="Choose"></select>
+                                            </div>
+                                            
+                                            <div class="input-group">
+                                                <input id="inp_newsubject" class="form-control" type="text" minlength="5" maxlength="20" required placeholder="Title subject">
+                                                <button type="submit">Go</button>
+                                            </div> 
+                                    </fieldset>
+
+                                    </form>                       
+                            </div>
+
+                                <!-- New teacher -->
+                            <div id="link_teachers_newdata" class="newdata collapse">
+                                <form id="form_teacher" action="" style="margin-top: 20px;">
+                                    <fieldset>
+                                        <legend>Add new teacher</legend>
+
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="selected_subject" style="font-size: 1rem;">Subject</label>
+                                                <select class="form-select" id="selected_subject" required aria-placeholder="Choose"></select>
+                                            </div>
+                    
+                                            <div class="input-group">
+                                                <input id="inp_teacher_name" class="form-control" type="text" minlength="5" maxlength="20" required placeholder="Surname teacher">
+                                            </div> 
+
+                                            <div class="input-group">
+                                                <span class="input-group-text">€</span> 
+                                                <input id="inp_teacher_salary" class="form-control" type="number" minlength="1" maxlength="8" required placeholder="Salary">
+                                                <input id="inp_teacher_birth" class="form-control" type="date" minlength="5" maxlength="20" required>                    
+                                            </div> 
+                                            <button class="btn" type="submit" style="margin-left:80%;">Go</button>
+
+                                    </fieldset>
+                                
+                                </form>
+                            </div>
+
+                                <!-- Add student -->
+                            <div id="link_students_newdata" class="newdata collapse">
+                                <form id="form_student" action="" style="margin-top: 20px;">
+                                    <fieldset>
+                                        <legend>Add new student</legend>
+                                            <div class="input-group">
+                                                <label class="input-group-text" for="selected_course_student" style="font-size: 1rem;">Course</label>
+                                                <select class="form-select" id="selected_course_student" required aria-placeholder="Choose"></select>
+                                            </div>
+
+                                            <div class="input-group">
+                                                <input id="inp_teacher_name" class="form-control" type="text" minlength="5" maxlength="20" required placeholder="Surname student">
+                                            </div> 
+
+                                            <div class="input-group">
+                                                <span class="input-group-text">Reg No</span> 
+                                                <input id="inp_student_regnum" class="form-control" type="number" minlength="5" maxlength="5" required placeholder="12345">
+                                                <input id="inp_student_birth" class="form-control" type="date" minlength="5" maxlength="20" required>                    
+                                            </div> 
+
+                                            <button class="btn" type="submit" style="margin-left:80%;">Go</button>
+
+                                    </fieldset>
+                                
+                                </form>
+                            </div>
+                        
+                        </div>
+                 </div>
+                </div>
+            </div>
+        </div>
+        <!--  MODAL END -->
+
+        <!-- navbar -->
+        <nav id="navbar" class="navbar">
+            <h4 class="logottl">Management System</h4>
+
+            <!-- Stylize of button of main menu -->
+            <input class="menu-btn" type="checkbox" style="display: none;" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul class="link-group">
+                    <li class="link"><a href="#">Faculties</a></li>
+                    <li class="link"><a href="#">Teachers</a></li>
+                    <li class="link"><a href="#">Students</a></li>
+                    <li class="link"><a href="#" onclick="window.location.reload()">Logout</a></li>
+                </ul>
+        </nav>
+
+    <!-- Main Part of site -->
+            <!-- Logo and title of the top of site -->
+        <header class="container" style="margin-top:100px; border: 1px #000;">
+            <div class="row">
+                <div class="col-sm-5" style="text-align:center;">
+                    <img id="logo" src="./img/logo.png"  alt="Test University">
+                </div>
+                <div id="title" class="col-sm-6" style="margin: auto;text-align: center;">Faculties and courses</div>
+                <div class="col-md-1"></div>
+            </div>
+        </header>
+
+        <!-- Faculties -->
+        <section id="sec_faculty" class="container active"></section>
+
+        <!-- Teachers -->
+        <section id="sec_teachers" class="container">
+            <div class="row">
+            Teachers
+            </div>
+        </section>
+
+        <!-- Students -->
+        <section id="sec_students" class="container">
+            <div class="row">
+                Students
+            </div>
+        </section>
+
+        <!-- narrow-button to up on the top of site-->
+        <a id="narrowup" type="button" onclick="slowscroll()">
+            <svg xmlns="http://www.w3.org/2000/svg" style="right:25px;bottom:25px;z-index:2;position:fixed;" width="20" height="20" fill="#837a7a" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"></path>
+            </svg>
+        </a>
+
+        <!-- temp.js is a file with template of objects -->
+        <script src="./js/temp.js"></script>
+
+        <!-- Main JS -->
+        <script src="./js/app.js"></script>
+
+    </body>
+</html>
